@@ -1,0 +1,51 @@
+#!/bin/sh
+
+die () {
+	echo "$*" >&2
+	exit 1
+}
+
+case "$1" in
+*/.git/*) ;; # needs LF line endings
+*) exec notepad.exe "$1" || die "Could not launch notepad.exe";;
+esac
+
+test $# = 1 ||
+die "Usage: $0 <file>"
+
+if test -f "$1"
+then
+	case "$(git config i18n.commitencoding 2>/dev/null)" in
+		''|utf-8|utf8) unix2dos.exe -m "$1";;
+		*) unix2dos.exe "$1";;
+	esac
+fi &&
+notepad.exe "$1" &&
+dos2unix.exe "$1" &&
+case "$1" in
+*/COMMIT_EDITMSG|*\\COMMIT_EDITMSG)
+	! columns="$(git config format.commitmessagecolumns)" || {
+		msg="$(fmt.exe -s -w "$columns" "$1" -p '#' | \
+			fmt.exe -s -w "$columns" -)" &&
+		printf "%s" "$msg" >"$1"
+	}
+	;;
+esac
+
+
+C:\Program Files\Java\jdk-14.0.2\bin
+
+C:\Program Files\Java\jdk-14.0.2\Microsoft Windows [Version 6.1.7601]
+Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
+
+C:\Users\USER>echo %path%
+C:\Program Files\Java\jre1.8.0_261_x64;C:\Users\USER\AppData\Local\Programs\Pyth
+on\Python38\Scripts\;C:\Users\USER\AppData\Local\Programs\Python\Python38\;C:\Us
+ers\USER\Desktop\Microsoft VS Code\bin
+
+C:\Users\USER>echo %path%
+
+
+C:\Users\USER>
+C:\Users\USER>
+C:\Users\USER
