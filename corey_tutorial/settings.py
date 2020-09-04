@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECRET_KEY = '$#52r51dqtrj^+qz3n1kb9smp+#$a8gz7!lrck4uf-&z-oj**7'
 SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = (os.environ.get('DEBUG_VALUE'==True))
+DEBUG = (os.environ.get('DEBUG_VALUE')=='True')
 
 ALLOWED_HOSTS = ['mycoreydjangoapp.herokuapp.com']
 
